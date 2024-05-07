@@ -4,15 +4,8 @@
 
 FROM oraclelinux:9-slim-fips
 
-## epel
-RUN microdnf install oracle-epel-release-el9
-
-## bare necessities pre-ansible
-RUN microdnf install langpacks-en
-
-## ansible necessities
+## ansible/vagrant necessities
 RUN microdnf install \
-    ansible \
     openssh-server \
     openssh-clients \
     python3-dnf \
