@@ -7,6 +7,9 @@ FROM oraclelinux:9-slim-fips
 ## epel
 RUN microdnf install oracle-epel-release-el9
 
+## bare necessities pre-ansible
+RUN microdnf install langpacks-en
+
 ## ansible necessities
 RUN microdnf install \
     ansible \
