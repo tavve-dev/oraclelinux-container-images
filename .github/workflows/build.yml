@@ -2,7 +2,7 @@
 name: Create and publish Docker images
 on:
   push:
-    branches: '*'
+    branches: master
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: tavve-dev/oraclelinux
@@ -14,7 +14,6 @@ jobs:
       id-token: write
       contents: read
       packages: write
-      attestations: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -28,11 +27,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - name: Build and push
         id: push
         uses: docker/build-push-action@v5
@@ -40,11 +34,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-      - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v1
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
-          subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
