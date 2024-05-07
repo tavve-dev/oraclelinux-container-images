@@ -43,4 +43,4 @@ RUN microdnf install \
     util-linux \
     util-linux-core
 
-CMD ["/usr/sbin/init"]
+CMD ["/lib/systemd/systemd"]
