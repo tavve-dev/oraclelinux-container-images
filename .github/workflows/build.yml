@@ -2,7 +2,7 @@
 name: Create and publish Docker images
 on:
   push:
-    branches:  master
+    branches: '*'
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: tavve-dev/oraclelinux
