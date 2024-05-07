@@ -4,17 +4,16 @@
 
 FROM oraclelinux:9-slim-fips
 
-## epel
-RUN microdnf install oracle-epel-release-el9
-
 ## ansible/vagrant necessities
 RUN microdnf install \
-    ansible \
     openssh-server \
     openssh-clients \
     python3-dnf \
     sudo \
     yum
+
+## ansible
+RUN microdnf --enablerepo=ol9_addons install ansible-core
 
 ## these were present in arm64 but NOT x86_64
 RUN microdnf install \
@@ -43,4 +42,4 @@ RUN microdnf install \
     util-linux \
     util-linux-core
 
-CMD ["/lib/systemd/systemd"]
+CMD ["/usr/sbin/init"]
