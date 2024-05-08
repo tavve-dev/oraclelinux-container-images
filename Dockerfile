@@ -44,4 +44,7 @@ RUN microdnf install \
     util-linux \
     util-linux-core
 
+## start us off updated
+RUN microdnf upgrade
+
 CMD ["/usr/sbin/init"]
