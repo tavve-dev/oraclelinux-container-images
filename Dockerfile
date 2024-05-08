@@ -6,11 +6,13 @@ FROM oraclelinux:9-slim-fips
 
 ## ansible/vagrant necessities
 RUN microdnf install \
+    gzip \
     openssh-server \
     openssh-clients \
     python3-dnf \
     sudo \
-    yum
+    yum \
+    zip
 
 ## ansible
 RUN microdnf --enablerepo=ol9_addons install ansible-core
