@@ -4,47 +4,49 @@
 
 FROM oraclelinux:9-slim-fips
 
+RUN <<EOR
 ## ansible/vagrant necessities
-RUN microdnf install \
-    gzip \
-    openssh-server \
-    openssh-clients \
-    python3-dnf \
-    sudo \
-    yum \
-    zip
+microdnf install \
+  gzip \
+  openssh-server \
+  openssh-clients \
+  python3-dnf \
+  sudo \
+  yum \
+  zip
 
 ## ansible
-RUN microdnf --enablerepo=ol9_addons install ansible-core
+microdnf --enablerepo=ol9_addons install ansible-core
 
 ## these were present in arm64 but NOT x86_64
-RUN microdnf install \
-    acl \
-    cracklib \
-    cracklib-dicts \
-    dbus \
-    dbus-broker \
-    dbus-common \
-    expat \
-    gzip \
-    kmod-libs \
-    libdb \
-    libeconf \
-    libfdisk \
-    libpwquality \
-    libseccomp \
-    libutempter \
-    openssh \
-    openssl \
-    pam \
-    systemd \
-    systemd-libs \
-    systemd-pam \
-    systemd-rpm-macros \
-    util-linux \
-    util-linux-core
+microdnf install \
+  acl \
+  cracklib \
+  cracklib-dicts \
+  dbus \
+  dbus-broker \
+  dbus-common \
+  expat \
+  gzip \
+  kmod-libs \
+  libdb \
+  libeconf \
+  libfdisk \
+  libpwquality \
+  libseccomp \
+  libutempter \
+  openssh \
+  openssl \
+  pam \
+  systemd \
+  systemd-libs \
+  systemd-pam \
+  systemd-rpm-macros \
+  util-linux \
+  util-linux-core
 
 ## start us off updated
-RUN microdnf upgrade
+microdnf upgrade
+EOR
 
 CMD ["/usr/sbin/init"]
