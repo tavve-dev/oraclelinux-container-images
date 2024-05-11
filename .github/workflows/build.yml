@@ -1,15 +1,19 @@
 ---
-name: Create and publish Docker images
+
+name: Build/Publish Oracle Linux Container Images
+
 on:
   push:
     branches: master
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: tavve-dev/oraclelinux
   IMAGE_VERSION: 9-slim-fips
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: docker
     permissions:
       id-token: write
       contents: read
