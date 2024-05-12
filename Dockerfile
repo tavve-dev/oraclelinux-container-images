@@ -45,7 +45,6 @@ microdnf install \
   util-linux \
   util-linux-core
 
-## start us off updated
 microdnf upgrade
 EOR
 
