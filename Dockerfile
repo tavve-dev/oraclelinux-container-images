@@ -13,6 +13,7 @@ microdnf install \
   openssh-clients \
   python3-dnf \
   sudo \
+  wget \
   yum \
   zip
 
