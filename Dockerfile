@@ -5,9 +5,10 @@
 FROM oraclelinux:9-slim-fips
 
 RUN <<EOR
-## ansible/vagrant necessities
+## ansible/vagrant/build necessities
 microdnf install \
   gzip \
+  jq \
   openssh-server \
   openssh-clients \
   python3-dnf \
