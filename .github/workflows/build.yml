@@ -38,7 +38,18 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: Dockerfile.9-slim-fips
           platforms: linux/amd64,linux/arm64
           provenance: false # needed to delete unk/unk (for now)
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:9-slim-fips
+      - name: Build and push
+        id: push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.9-slim
+          platforms: linux/amd64,linux/arm64
+          provenance: false # needed to delete unk/unk (for now)
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:9-slim
