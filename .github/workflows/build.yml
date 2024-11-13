@@ -34,7 +34,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
-        id: push
+        id: push-9-slim-fips
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -44,7 +44,7 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:9-slim-fips
       - name: Build and push
-        id: push
+        id: push-9-slim
         uses: docker/build-push-action@v5
         with:
           context: .
